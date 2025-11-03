@@ -1,3 +1,4 @@
+
 import streamlit as st # type: ignore
 import json
 import os
@@ -10,6 +11,9 @@ import google.generativeai as genai
 import google.api_core.exceptions as google_exceptions
 import sqlite3
 from datetime import datetime
+# Load environment variables from .env
+from dotenv import load_dotenv
+load_dotenv()
 
 
 # ---------- PAGE CONFIG ----------
@@ -58,7 +62,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ---------- GOOGLE API CONFIG ----------
-genai.configure(api_key="AIzaSyB7CfzR8xBf7wPn0-tZ3wu_b2nEbUCd6ns")  # 🔑 Replace with your key
+genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))  # Loaded from .env
 
 # ---------- UTILITIES ----------
 
